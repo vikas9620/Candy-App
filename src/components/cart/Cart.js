@@ -15,7 +15,7 @@ const Cart = (props) => {
     const existingItem = cartCtx.candies.find((item) => item.id === id);
 
     if (existingItem) {
-      cartCtx.updateItem(id, existingItem.quantity + 1);
+      cartCtx.updateItem(id, existingItem.amount + 1);
     } else {
       cartCtx.addItem(id, 1);
     }

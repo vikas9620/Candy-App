@@ -28,18 +28,28 @@ const CartProvider = (props) => {
   };
 
   const removeItemFromCartHandler = (id) => {
-    setCartCandies((prevCartCandies) =>
-      prevCartCandies.filter((cartItem) => cartItem.id !== id)
-    );
-  };
+    setCartCandies((prevCartCandies) =>{
+        const updatedCartCandies = prevCartCandies.map((candy) => {
+        if (candy.id === id) {
+          return {
+            ...candy,
+            amount: candy.amount - 1,
+          };
+        }
+        return candy;
+      });
 
+      return updatedCartCandies.filter((candy) => candy.amount > 0);
+     } )}
+
+  
   const updateItemQuantity = (id, quantity) => {
     setCartCandies((prevCartCandies) =>
       prevCartCandies.map((cartItem) => {
         if (cartItem.id === id) {
           return {
             ...cartItem,
-            quantity: quantity,
+            amount: quantity,
           };
         }
         return cartItem;
